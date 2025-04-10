@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DriveAuth from "./pages/DriveAuth";
 import Plano from "./pages/Plano";
+import Solicitar from "./pages/Solicitar";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/drive-auth" element={<DriveAuth />} />
           <Route path="/plano" element={<Plano />} />
+          <Route path="/solicitar" element={<Solicitar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
