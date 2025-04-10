@@ -1,14 +1,12 @@
 
 import { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
-import Header from '@/components/Header';
+import StoreHeader from '@/components/StoreHeader';
 import FeaturedContent from '@/components/FeaturedContent';
 import DriveGallery from '@/components/DriveGallery';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
-  const [userName, setUserName] = useState("João");
-  const [storeName, setStoreName] = useState("Nome da loja");
   const [isConnectedToDrive, setIsConnectedToDrive] = useState(true);
   const isMobile = useIsMobile();
 
@@ -45,7 +43,7 @@ const Index = () => {
             </div>
           )}
           <div className="flex-1">
-            <Header userName={userName} storeName={storeName} />
+            <StoreHeader />
           </div>
         </div>
         

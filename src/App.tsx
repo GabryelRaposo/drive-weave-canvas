@@ -4,7 +4,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import AuthGuard from "./components/AuthGuard";
 import Index from "./pages/Index";
+import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import DriveAuth from "./pages/DriveAuth";
 import Plano from "./pages/Plano";
@@ -18,13 +21,44 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/drive-auth" element={<DriveAuth />} />
-          <Route path="/plano" element={<Plano />} />
-          <Route path="/solicitar" element={<Solicitar />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/auth" element={<Auth />} />
+            <Route 
+              path="/" 
+              element={
+                <AuthGuard>
+                  <Index />
+                </AuthGuard>
+              } 
+            />
+            <Route 
+              path="/drive-auth" 
+              element={
+                <AuthGuard>
+                  <DriveAuth />
+                </AuthGuard>
+              } 
+            />
+            <Route 
+              path="/plano" 
+              element={
+                <AuthGuard>
+                  <Plano />
+                </AuthGuard>
+              } 
+            />
+            <Route 
+              path="/solicitar" 
+              element={
+                <AuthGuard>
+                  <Solicitar />
+                </AuthGuard>
+              } 
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
