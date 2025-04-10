@@ -1,5 +1,6 @@
 
 import { CircleUser } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeaderProps {
   userName: string;
@@ -7,16 +8,18 @@ interface HeaderProps {
 }
 
 const Header = ({ userName, storeName }: HeaderProps) => {
+  const isMobile = useIsMobile();
+  
   return (
-    <div className="flex justify-between items-center px-8 py-4 border-b border-gray-200">
+    <div className="flex justify-between items-center p-4 md:px-8 md:py-4 border-b border-gray-200 w-full">
       <div>
-        <h2 className="text-lg font-medium text-gray-700">
-          Olá, {userName}! Bem-vindo ao BK Arts!
+        <h2 className={`${isMobile ? 'text-base' : 'text-lg'} font-medium text-gray-700`}>
+          {isMobile ? `Olá, ${userName}!` : `Olá, ${userName}! Bem-vindo ao BK Arts!`}
         </h2>
       </div>
-      <div className="flex items-center space-x-4">
-        <span className="text-sm text-gray-600">{storeName}</span>
-        <CircleUser size={40} className="text-gray-400" />
+      <div className="flex items-center space-x-2 md:space-x-4">
+        <span className="text-xs md:text-sm text-gray-600">{storeName}</span>
+        <CircleUser size={isMobile ? 32 : 40} className="text-gray-400" />
       </div>
     </div>
   );
