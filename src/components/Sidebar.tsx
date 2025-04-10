@@ -1,12 +1,14 @@
 
 import { Home, Archive, BookOpen, HelpCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const location = useLocation();
+  
   const menuItems = [
-    { name: "Home", icon: <Home size={20} />, route: "/", active: true },
-    { name: "Solicitar Arts", icon: <Archive size={20} />, route: "/solicitar" },
-    { name: "Meu plano", icon: <BookOpen size={20} />, route: "/plano" },
+    { name: "Home", icon: <Home size={20} />, route: "/", active: location.pathname === "/" },
+    { name: "Solicitar Arts", icon: <Archive size={20} />, route: "/solicitar", active: location.pathname === "/solicitar" },
+    { name: "Meu plano", icon: <BookOpen size={20} />, route: "/plano", active: location.pathname === "/plano" },
   ];
 
   return (
