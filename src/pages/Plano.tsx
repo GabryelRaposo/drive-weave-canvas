@@ -121,11 +121,11 @@ const Plano = () => {
               {plans.map((plan) => (
                 <div key={plan.id} className={`relative ${plan.highlighted ? 'md:scale-105' : ''}`}>
                   {plan.tag && (
-                    <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-medium text-white ${plan.tagVariant === 'secondary' ? 'bg-red-500' : 'bg-pink-600'}`}>
+                    <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 px-3 md:px-4 py-1 rounded-full text-xs md:text-sm font-medium text-white ${plan.tagVariant === 'secondary' ? 'bg-red-500' : 'bg-[#E11D48]'}`}>
                       {plan.tag}
                     </div>
                   )}
-                  <Card className={`overflow-hidden h-full flex flex-col ${plan.id === 'unlimited_pro' ? 'border-red-500 border-2' : plan.id === 'unlimited' ? 'border-pink-500 border-2' : ''}`}>
+                  <Card className={`overflow-hidden h-full flex flex-col ${plan.id === 'unlimited_pro' ? 'border-red-500 border-2' : plan.id === 'unlimited' ? 'border-[#E11D48] border-2' : ''}`}>
                     <CardHeader className="pb-2 md:pb-3 pt-4 md:pt-6 px-3 md:px-4 bg-gray-900 text-white">
                       <div className="text-center">
                         <h3 className="font-bold text-base md:text-lg">{plan.name}</h3>
@@ -142,7 +142,7 @@ const Plano = () => {
                       <ul className="space-y-2 md:space-y-3 text-xs md:text-sm">
                         {plan.features.map((feature, index) => (
                           <li key={index} className="flex items-start">
-                            <Check className="h-4 w-4 md:h-5 md:w-5 text-green-500 flex-shrink-0 mr-1 md:mr-2" />
+                            <Check className="h-4 w-4 md:h-5 md:w-5 text-[#E11D48] flex-shrink-0 mr-1 md:mr-2" />
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -154,8 +154,8 @@ const Plano = () => {
                           plan.id === 'unlimited_pro' 
                             ? 'bg-red-500 hover:bg-red-600' 
                             : plan.id === 'unlimited' 
-                              ? 'bg-pink-600 hover:bg-pink-700' 
-                              : 'bg-pink-600 hover:bg-pink-700'
+                              ? 'bg-[#E11D48] hover:bg-[#C81D45]' 
+                              : 'bg-[#E11D48] hover:bg-[#C81D45]'
                         }`}
                       >
                         {plan.buttonLabel}

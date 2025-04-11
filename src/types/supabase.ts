@@ -10,6 +10,7 @@ export type Database = {
           logo_url: string | null;
           created_at: string | null;
           user_id: string | null;
+          plan_type: string | null;
         };
         Insert: {
           id?: string;
@@ -18,6 +19,7 @@ export type Database = {
           logo_url?: string | null;
           created_at?: string | null;
           user_id?: string | null;
+          plan_type?: string | null;
         };
         Update: {
           id?: string;
@@ -26,6 +28,7 @@ export type Database = {
           logo_url?: string | null;
           created_at?: string | null;
           user_id?: string | null;
+          plan_type?: string | null;
         };
       };
     };

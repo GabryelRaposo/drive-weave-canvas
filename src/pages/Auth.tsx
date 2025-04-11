@@ -30,6 +30,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from '@/components/ui/use-toast';
 
 const MASTER_KEY = "Bacanas@11";
@@ -46,6 +47,9 @@ const registerSchema = z.object({
   password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
   masterKey: z.string().refine(val => val === MASTER_KEY, {
     message: 'Chave master inválida'
+  }),
+  planType: z.string({
+    required_error: "Selecione um plano",
   }),
   logo: z.any().optional()
 });
@@ -78,7 +82,8 @@ const Auth = () => {
       ownerName: '',
       email: '',
       password: '',
-      masterKey: ''
+      masterKey: '',
+      planType: 'test',
     }
   });
 
@@ -87,7 +92,7 @@ const Auth = () => {
   };
 
   const handleRegisterSubmit = async (data: RegisterFormData) => {
-    await signUp(data.email, data.password, data.storeName, data.ownerName, logoFile);
+    await signUp(data.email, data.password, data.storeName, data.ownerName, data.planType, logoFile);
   };
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,6 +113,9 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
+          <div className="flex justify-center mb-2">
+            <img src="https://www.bkarts.com.br/_next/image?url=%2Flogo.png&w=96&q=75" alt="BK ARTS" className="h-12" />
+          </div>
           <CardTitle className="text-2xl font-bold text-center">Drive-Weave-Canvas</CardTitle>
           <CardDescription className="text-center">
             {activeTab === 'login' ? 'Entre com suas credenciais' : 'Crie uma nova conta de loja'}
@@ -151,7 +159,7 @@ const Auth = () => {
                     )}
                   />
                   
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full bg-[#E11D48] hover:bg-[#C81D45]" disabled={loading}>
                     {loading ? 'Entrando...' : 'Entrar'}
                   </Button>
                 </form>
@@ -219,6 +227,30 @@ const Auth = () => {
                   
                   <FormField
                     control={registerForm.control}
+                    name="planType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Plano</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Selecione um plano" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="test">Plano Test (3 produtos)</SelectItem>
+                            <SelectItem value="experience">Plano Experience (7 produtos)</SelectItem>
+                            <SelectItem value="unlimited">Plano UNLIMITED (ilimitado)</SelectItem>
+                            <SelectItem value="unlimited_pro">Plano UNLIMITED PRO (ilimitado)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={registerForm.control}
                     name="masterKey"
                     render={({ field }) => (
                       <FormItem>
@@ -260,7 +292,7 @@ const Auth = () => {
                     )}
                   />
                   
-                  <Button type="submit" className="w-full" disabled={loading}>
+                  <Button type="submit" className="w-full bg-[#E11D48] hover:bg-[#C81D45]" disabled={loading}>
                     {loading ? 'Cadastrando...' : 'Cadastrar'}
                   </Button>
                 </form>

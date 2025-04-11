@@ -11,7 +11,7 @@ interface AuthContextType {
   user: User | null;
   storeData: StoreData | null;
   signIn: (email: string, password: string) => Promise<void>;
-  signUp: (email: string, password: string, storeName: string, ownerName: string, logo?: File | null) => Promise<void>;
+  signUp: (email: string, password: string, storeName: string, ownerName: string, planType: string, logo?: File | null) => Promise<void>;
   signOut: () => Promise<void>;
   loading: boolean;
 }
@@ -94,7 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signUp = async (email: string, password: string, storeName: string, ownerName: string, logo?: File | null) => {
+  const signUp = async (email: string, password: string, storeName: string, ownerName: string, planType: string, logo?: File | null) => {
     try {
       setLoading(true);
       
@@ -135,7 +135,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           name: storeName,
           owner_name: ownerName,
           logo_url: logoUrl,
-          user_id: authData.user.id
+          user_id: authData.user.id,
+          plan_type: planType
         });
         
       if (storeError) throw storeError;

@@ -22,7 +22,7 @@ const StoreHeader = () => {
           <p className="text-sm text-gray-500">{storeData?.owner_name || 'Proprietário'}</p>
         </div>
       </div>
-      <Button variant="ghost" size="icon" onClick={signOut}>
+      <Button variant="ghost" size="icon" onClick={signOut} className="text-[#E11D48]">
         <LogOut className="h-5 w-5" />
       </Button>
     </div>

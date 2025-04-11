@@ -10,6 +10,7 @@ export interface RegisterFormData {
   email: string;
   password: string;
   masterKey: string;
+  planType?: string;
   logo?: File | null;
 }
 
@@ -18,4 +19,5 @@ export interface StoreData {
   name: string;
   owner_name: string;
   logo_url?: string | null;
+  plan_type?: string;
 }
