@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Sidebar from '@/components/Sidebar';
 import Header from '@/components/Header';
@@ -31,7 +30,7 @@ export type Solicitacao = {
 const Solicitar = () => {
   const { storeData, user } = useAuth();
   const [storeName, setStoreName] = useState("Nome da loja");
-  const [plano, setPlano] = useState("Plano UNLIMITED");
+  const [plano, setPlano] = useState("");
   const isMobile = useIsMobile();
   const [solicitacoes, setSolicitacoes] = useState<Solicitacao[]>([]);
   const [showLimitAlert, setShowLimitAlert] = useState(false);
@@ -57,8 +56,10 @@ const Solicitar = () => {
             setPlano('Plano UNLIMITED PRO');
             break;
           default:
-            setPlano('Plano UNLIMITED');
+            setPlano(`Plano ${storeData.plan_type.toUpperCase()}`);
         }
+      } else {
+        setPlano('Plano não definido');
       }
     }
   }, [storeData]);

@@ -14,7 +14,7 @@ const StoreHeader = () => {
           {storeData?.logo_url ? (
             <AvatarImage src={storeData.logo_url} alt={storeData.name} />
           ) : (
-            <AvatarFallback>{storeData?.name?.substring(0, 2).toUpperCase() || 'ST'}</AvatarFallback>
+            <AvatarImage src="https://www.bkarts.com.br/_next/image?url=%2Flogo.png&w=96&q=75" alt="BK ARTS" />
           )}
         </Avatar>
         <div>
